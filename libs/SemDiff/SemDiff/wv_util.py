@@ -1,5 +1,53 @@
-def build_gensim_model():
-    pass
+def build_gensim_model(features,
+                       num_features = 100,
+                       min_word_count = 100,
+                       context = 5,
+                       downsampling = 1e-3,
+                       verbose = True):
+
+    """
+
+    """
+    from gensim.models import Phrases
+    from gensim.models import word2vec
+    import time
+    import logging
+    import multiprocessing
+
+    start = time.time();
+
+    if (verbose):
+        # Lets make sure that we are logging—this will take a long time and its good to get updates
+        logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',\
+        level=logging.INFO)
+
+    # Set values for various parameters
+    num_features = 100;    # Dimensionality of the hidden layer representation
+    min_word_count = 100;   # Minimum word count to keep a word in the vocabulary
+    num_workers = multiprocessing.cpu_count();       # Number of threads to run in parallel set to total number of cpus.
+    context = 5          # Context window size (on each side)
+    downsampling = 1e-3   # Downsample setting for frequent words
+
+    # Transforming to bigram representation
+    bigram_transformer = Phrases(features)
+
+    if (verbose):
+        print("Training model...")
+
+    # Initialize and train the model
+    model = word2vec.Word2Vec(bigram_transformer[features],
+                              workers=num_workers, \
+                              size=num_features, \
+                              min_count = min_word_count, \
+                              window = context, \
+                              sample = downsampling);
+
+    # We don't plan on training the model any further, so calling
+    # init_sims will make the model more memory efficient by normalizing the
+    # vectors in-place.
+    model.init_sims(replace=True);
+
+    return(model)
 
 
 def preprocess_data(df, text_col=None, duplicate_cols=None, verbose=False):
