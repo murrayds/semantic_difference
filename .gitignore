@@ -1,4 +1,6 @@
+# Ignore word vectors models and other data
 data/*
+*.wv
 
 # Ignore data files
 *.txt
