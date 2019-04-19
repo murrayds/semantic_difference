@@ -21,13 +21,6 @@ def build_gensim_model(features,
         logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',\
         level=logging.INFO)
 
-    # Set values for various parameters
-    num_features = 100;    # Dimensionality of the hidden layer representation
-    min_word_count = 100;   # Minimum word count to keep a word in the vocabulary
-    num_workers = multiprocessing.cpu_count();       # Number of threads to run in parallel set to total number of cpus.
-    context = 5          # Context window size (on each side)
-    downsampling = 1e-3   # Downsample setting for frequent words
-
     # Transforming to bigram representation
     bigram_transformer = Phrases(features)
 
@@ -36,7 +29,7 @@ def build_gensim_model(features,
 
     # Initialize and train the model
     model = word2vec.Word2Vec(bigram_transformer[features],
-                              workers=num_workers, \
+                              workers=multiprocessing.cpu_count(), \
                               size=num_features, \
                               min_count = min_word_count, \
                               window = context, \
