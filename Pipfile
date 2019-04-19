@@ -6,6 +6,8 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
+gensim = "*"
+matplotlib = "*"
 
 [requires]
 python_version = "3.7"
