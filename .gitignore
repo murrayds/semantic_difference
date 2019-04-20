@@ -2,6 +2,9 @@
 data/*
 *.wv
 
+# Ignore R files
+*.nb.html
+
 # Ignore data files
 *.txt
 *.zip
