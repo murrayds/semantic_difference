@@ -4,6 +4,7 @@ import SemDiff as sd
 import pandas as pd
 from gensim.models import Word2Vec
 
+# Need to run first 10 cells of 20190420_aggregate_yelp_data to create csv files.
 HOTELS_PATH = '~/Documents/semantic_difference/data/hotel_text.csv'
 RESTAURANTS_PATH = '~/Documents/semantic_difference/data/restaurant_text.csv'
 STORE_PATH = '~/Documents/semantic_difference/data/store_text.csv'
@@ -32,7 +33,7 @@ store_features = sd.preprocess_data(store,
                                     text_col='text',
                                     verbose=True)
 
-# First train the model for the introduction data
+# First train the model for the hotel data
 hotel_model = sd.build_gensim_model(hotel_features,
                                     min_word_count = 50,
                                     verbose = True)
