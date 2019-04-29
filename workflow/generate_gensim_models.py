@@ -4,13 +4,15 @@ import SemDiff as sd
 import pandas as pd
 from gensim.models import Word2Vec
 
-INTRO_SENTENCES_PATH = '~/Documents/CWTS_Server/introduction_million_sample.rpt'
-METHODS_SENTENCES_PATH = '~/Documents/CWTS_Server/methods_million_sample.rpt'
-DISCUSSION_SENTENCES_PATH = '~/Documents/CWTS_Server/discussion_million_sample.rpt'
+DATA_PATH = '/Users/dakotamurray/Documents/semantic_difference/data/L665/'
 
-INTRO_SAVE_PATH = "~/Documents/semantic_difference/data/intro_citance_model.wv"
-METHODS_SAVE_PATH = "~/Documents/semantic_difference/data/methods_citance_model.wv"
-DISCUSSION_SAVE_PATH = "~/Documents/semantic_difference/data/discussion_citance_model.wv"
+INTRO_SENTENCES_PATH = DATA_PATH + 'introduction_million_sample.rpt'
+METHODS_SENTENCES_PATH = DATA_PATH + 'methods_million_sample.rpt'
+DISCUSSION_SENTENCES_PATH = DATA_PATH + 'discussion_million_sample.rpt'
+
+INTRO_SAVE_PATH = DATA_PATH + "intro_citance_model.wv"
+METHODS_SAVE_PATH = DATA_PATH + "methods_citance_model.wv"
+DISCUSSION_SAVE_PATH = DATA_PATH + "discussion_citance_model.wv"
 
 print('Loading raw data')
 # load data samples
