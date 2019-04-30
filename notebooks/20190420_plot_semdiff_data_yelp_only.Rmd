@@ -10,8 +10,8 @@ library(dplyr)
 library(ggplot2)
 
 # Need to run 20190419_SemAxisExample.ipynb before running this. 
-semaxis_data <- read_csv("/Users/bsobolik/Documents/semantic_difference/data/semantic_word_axes.csv")
-intro_methods_sim <- read_csv("/Users/bsobolik/Documents/semantic_difference/data/intro_method_interword_similarity.csv")
+semaxis_data <- read_csv("../data/semantic_word_axes.csv")
+intro_methods_sim <- read_csv("../data/intro_method_interword_similarity.csv")
 ```
 
 ```{r}
@@ -45,7 +45,7 @@ intro_methods_sim %>%
 ```
 
 ```{r}
-intro_discussion_sim <- read_csv("~/Documents/semantic_difference/data/intro_discussion_interword_similarity.csv")
+intro_discussion_sim <- read_csv("../data/intro_discussion_interword_similarity.csv")
 
 intro_discussion_ordered <- intro_discussion_sim %>%
   group_by(word) %>%
@@ -147,10 +147,7 @@ library(readr)
 library(dplyr)
 library(ggplot2)
 
-library(broom)
-library(tidyr)
-
-yelp_data <- read_csv("/Users/bsobolik/Documents/semantic_difference/data/hotel_restaurant_interword_similarity.csv")
+yelp_data <- read_csv("../data/restaurant_pos_neg_interword_similarity.csv")
 
 
 yelp_ordered <- yelp_data %>%
@@ -192,10 +189,11 @@ yelp_ordered %>%
 
 
 ```{r}
+
 library(broom)
 library(tidyr)
 
-yelp_semaxis_data <- read_csv("/Users/bsobolik/Documents/semantic_difference/data/yelp_semantic_word_axes.csv")
+yelp_semaxis_data <- read_csv("../data/yelp_semantic_word_axes.csv")
 
 # order by the biggest difference
 yelp_semaxis_data %>%
@@ -206,7 +204,7 @@ yelp_semaxis_data %>%
     antonym = reorder(antonym, diff_axes),
     ystart = hotel,
     yend = restaurant,
-    word = factor(word, labels = c("\"Client\"", "\"Table\""))
+    # word = factor(word, labels = c("\"Client\"", "\"Table\""))
   ) %>%
   gather(key, value, hotel, restaurant) %>%
   ggplot(aes(x = antonym, y = value, shape = key, color = key)) +
