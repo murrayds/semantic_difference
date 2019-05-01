@@ -5,7 +5,7 @@ import pandas as pd
 from gensim.models import Word2Vec
 from gensim.models import FastText
 
-DATA_PATH = '/Users/dakotamurray/Documents/semantic_difference/data/L665/'
+DATA_PATH = '../data/'
 
 
 INTRO_W2V_PATH = DATA_PATH + "intro_citance_model.wv"

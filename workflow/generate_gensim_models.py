@@ -4,7 +4,7 @@ import SemDiff as sd
 import pandas as pd
 from gensim.models import Word2Vec
 
-DATA_PATH = '/Users/dakotamurray/Documents/semantic_difference/data/L665/'
+DATA_PATH = '../data/'
 
 INTRO_SENTENCES_PATH = DATA_PATH + 'introduction_million_sample.rpt'
 METHODS_SENTENCES_PATH = DATA_PATH + 'methods_million_sample.rpt'

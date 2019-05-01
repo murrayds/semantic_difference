@@ -37,8 +37,3 @@ def test_perform_embedding(embedding_path):
     embed = gensim.models.KeyedVectors.load_word2vec_format(embedding_path)
     result = project_word_on_axis(embed, "baby", ("hate", "love"), k=3)
     print(result)
-
-
-if __name__ == '__main__':
-    path  = '/Users/dakotamurray/Documents/semantic_difference/data/SandersForPresident.cbow.300.0.005.10.txt'
-    test_perform_embedding(path)
