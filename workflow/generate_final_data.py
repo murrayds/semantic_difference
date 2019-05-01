@@ -18,7 +18,7 @@ INTRO_FT_PATH = DATA_PATH + "intro_citance_model_fasttext.wv"
 METHODS_FT_PATH = DATA_PATH + "methods_citance_model_fasttext.wv"
 DISCUSSION_FT_PATH = DATA_PATH + "discussion_citance_model_fasttext.wv"
 
-FT_SEMAXISSAVE_PATH = DATA_PATH + "semantic_word_axes_fasttext.csv"
+FT_SEMAXIS_SAVE_PATH = DATA_PATH + "semantic_word_axes_fasttext.csv"
 
 HEDGES_PATH = DATA_PATH + "hedges.txt"
 
@@ -123,6 +123,32 @@ print("FastText: Loading Models")
 intro_model_ft = FastText.load(INTRO_FT_PATH)
 methods_model_ft = FastText.load(METHODS_FT_PATH)
 discussion_model_ft = FastText.load(DISCUSSION_FT_PATH)
+
+
+intro_list = []
+methods_list = []
+discussion_list = []
+ant_names = []
+word_list = []
+for word in hedges:
+    for ant in antonyms:
+        intro_list.append(sd.project_word_on_axis(intro_model_ft, word, ant, k = 3))
+        methods_list.append(sd.project_word_on_axis(methods_model_ft, word, ant, k = 3))
+        discussion_list.append(sd.project_word_on_axis(discussion_model_ft, word, ant, k = 3))
+        word_list.append(word)
+
+        ant_names.append("{}-{}".format(ant[0], ant[1]))
+
+
+df = pd.DataFrame({'antonym': ant_names,
+                   'intro': intro_list,
+                   'methods': methods_list,
+                   'discussion': discussion_list,
+                   'word': word_list},
+                  index = ant_names)
+
+df.to_csv(FT_SEMAXIS_SAVE_PATH)
+
 
 #
 # Intro and Method comparison
